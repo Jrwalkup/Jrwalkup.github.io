@@ -1,8 +1,45 @@
-body {
-    background: #578A66;
 
+body {
+    background: #4a8d5e8f; 
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
+
 h1 {
-    color: #5C5449;
+    color: #000000;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* About section */
+.about {
+    background-color: #f5f5dc; 
+    color: #2f4f4f; 
+    padding: 30px;
+    text-align: center;
+}
+
+/* Skills section */
+.skills {
+    background-color: #ffb380; 
+    color: #000000;
+    padding: 30px;
+    text-align: center;
+}
+
+/* Projects section */
+.projects {
+    background-color: #80d4d4; 
+    color: #000000;
+    padding: 30px;
+    text-align: center;
+}
+
+/* Contact section */
+.contact {
+    background-color: #b399ff; 
+    color: #000000;
+    padding: 30px;
     text-align: center;
 }
