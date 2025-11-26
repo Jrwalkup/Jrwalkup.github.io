@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Adventure Game – Joshua Walkup</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 900px; margin: 40px auto; line-height: 1.6; background: #f9f9f9; color: #333; }
+    h1 { text-align: center; color: #2c3e50; }
+    .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+    .readme { background: #eef5ff; padding: 20px; border-left: 5px solid #3498db; margin: 25px 0; border-radius: 8px; }
+    pre { background: #2d2d2d; color: #f8f8f2; padding: 20px; overflow-x: auto; border-radius: 8px; font-size: 14px; }
+    .back { text-align: center; margin: 30px 0; }
+    a { color: #3498db; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Text Adventure Game</h1>
+    
+    <div class="readme">
+      <h2>About This Project</h2>
+      <p>A fully interactive choose-your-own-adventure game written in Java for CSCE 145/146.</p>
+      <ul>
+        <li>3 starting doors with completely different storylines</li>
+        <li>Over 8 unique endings (treasure, escape, death, fairy wish, etc.)</li>
+        <li>Full input validation on every player choice</li>
+        <li>100% original code – written from scratch</li>
+      </ul>
+      <p><strong>Run <code>Game.java</code> and type your name to begin your adventure!</strong></p>
+    </div>
+
+    <h2>Game.java – Full Source Code</h2>
+    <pre>
+    // Joshua Walkup
+
+import java.util.Scanner;
+
+public class Game {
+
+	public static void main(String[] args) {
+
+		Scanner scanner = new Scanner(System.in);
+
+		// Welcome and name prompt
+		System.out.println("Welcome to the beginning of your adventure, Type your name to start...");
+		String name = scanner.nextLine();
+
+		// Initial choice
+		System.out.println("\nThere are 3 doors in front of you. Which do you choose, " + name + "?");
+		System.out.println("\nThe red door? Enter 1");
+		System.out.println("\nThe blue door? Enter 2");
+		System.out.println("\nThe green door? Enter 3");
+
+		// Declares an int for different player options
+		int choice = scanner.nextInt();
+		scanner.nextLine();
+
+		// Input validation
+		while (choice < 1 || choice > 3) {
+			System.out.println("\nInvalid input. Please enter a number from 1 to 3:");
+			choice = scanner.nextInt();
+			scanner.nextLine();
+		}
+
+		// Door 1
+		if (choice == 1) {
+			System.out.println("\nYou open the red door and walk into an extremely dark room."
+					+ "\nYou hear something unsettling moving in the corner."
+					+ "\nYou see a sword but it is close to where the noise just came from."
+					+ "\nYou can risk it and run to grab the sword, or try to hide under a nearby table."
+					+ "\nIf you wish to grab the sword, type sword." + "\nIf you wish to hide, type hide.");
+
+			// Input validation
+			String input = scanner.nextLine();
+			while (!input.equalsIgnoreCase("sword") && !input.equalsIgnoreCase("hide")) {
+				System.out.println("Invalid choice, please type sword or hide");
+				input = scanner.nextLine();
+			}
+			
+			// Sword path
+			if (input.equalsIgnoreCase("sword")) {
+				System.out.println("\nYou run and hastily grab the sword."
+						+ "\nAs you pick it up, the noise you heard earlier grows louder until you notice a giant rat crawling towards you menacingly."
+						+ "\nYou figure you only have two options, try to fight the rat or run through the dark to try and find the next door."
+						+ "\nIf you wish to fight, type fight." + "\nIf you wish to run, type run.");
+
+				// Input validation
+				String action = scanner.nextLine();
+				while (!action.equalsIgnoreCase("fight") && !action.equalsIgnoreCase("run")) {
+					System.out.println("Invalid choice, please type fight or run");
+					action = scanner.nextLine();
+				}
+
+				// Fight/run using compound Boolean
+				if (action.equalsIgnoreCase("fight") || action.equalsIgnoreCase("run")) {
+					if (action.equalsIgnoreCase("fight") && choice == 1) {
+						System.out.println("\nYou fight off the rat successfully, and it drops a small key with the number one written on it."
+										+ "\nYou use the key to open door one and find a massive treasure chest overflowing with gold and jewels."
+										+ "\nCongratulations, " + name + "! You survived and found treasure.");
+					
+					// Run outcome
+					} else {
+						System.out.println("\nYou run and see two doors in front of you."
+								+ "\nOne door has the number one written on it."
+								+ "\nThe other has the number two written on it."
+								+ "\nWhich door do you choose? Enter 1 or 2:");
+
+						int doorChoice = scanner.nextInt();
+						scanner.nextLine();
+
+						// Input validation
+						while (doorChoice != 1 && doorChoice != 2) {
+							System.out.println("Invalid input. Enter 1 or 2:");
+							doorChoice = scanner.nextInt();
+							scanner.nextLine();
+						}
+						
+						// Door choice after running
+						if (doorChoice == 1) {
+							System.out.println("\nYou dash toward door one with the sword in hand."
+									+ "\nThe rat charges you and you ready your sword."
+									+ "\nYou fight off the rat successfully, and it drops a small key with the number one written on it."
+									+ "\nYou use the key to open door one and find a massive treasure chest overflowing with gold and jewels."
+									+ "\nCongratulations, " + name + "! You survived and found treasure.");
+						} else {
+							System.out.println("\nYou dash toward door two, open it, and manage to slam it shut just in time."
+											+ "\nThe rat is left behind. You climb a nearby ladder and escape safely into the sunlight."
+											+ "\nCongratulations, " + name
+											+ "! You have survived the dangers and completed your adventure.");
+						}
+					}
+				}
+			
+				// Hide path
+				} else { 
+				System.out.println("\nYou crawl under a nearby table to hide." + "\nYou look around and notice a giant rat."
+								+ "\nThe rat doesn't seem to notice you and walks right past you."
+								+ "\nYou can sneak to the sword or wait patiently."
+								+ "\nIf you wish to sneak, type sneak." + "\nIf you wish to wait, type wait.");
+
+				// Input Validation
+				String action = scanner.nextLine();
+				while (!action.equalsIgnoreCase("sneak") && !action.equalsIgnoreCase("wait")) {
+					System.out.println("Invalid choice, please type sneak or wait");
+					action = scanner.nextLine();
+				}
+				
+				// Player chooses sneak or wait
+				if (action.equalsIgnoreCase("sneak")) {
+					System.out.println("\nYou carefully sneak to the sword and grab it."
+							+ "\nThe rat notices and lunges at you but you defend yourself successfully."
+							+ "\nYou notice the rat dropped a key with the number one written on it.\nYou grab the key."
+							+ "\nYou find two doors in the room." + "\nOne door has the number one written on it."
+							+ "\nThe other has the number two written on it."
+							+ "\nWhich door do you choose? Enter 1 or 2:");
+
+					int doorChoice = scanner.nextInt();
+					scanner.nextLine();
+
+					// Input validation
+					while (doorChoice != 1 && doorChoice != 2) {
+						System.out.println("Invalid input. Enter 1 or 2:");
+						doorChoice = scanner.nextInt();
+						scanner.nextLine();
+					}
+
+					if (doorChoice == 1) {
+						System.out.println("\nYou open the door and find a massive treasure chest overflowing with gold and jewels."
+										+ "\nCongratulations, " + name + "! You survived and found treasure.");
+					} else {
+						System.out.println("\nYou open door two and find a ladder leading up to the outside world."
+								+ "\nYou climb out to freedom, leaving the darkness behind." + "\nCongratulations, "
+								+ name + "! You have escaped the dangers below.");
+					}
+				
+					} else { 
+					System.out.println("\nYou wait too long and the rat finds you."
+							+ "\nIt attacks quickly, and you have no chance to escape." + "\nYour adventure ends here, "
+							+ name + ". Maybe next time you will be more brave.");
+				}
+			}
+
+		}
+
+		// Door 2
+		else if (choice == 2) {
+			System.out.println("\nYou open the blue door and find yourself in a bright room with something written on the wall.\nYou walk closer to inspect it.\nIt reads:"
+							+ " You must solve a riddle to proceed." + "\nRiddle: What has keys but can't open locks?"
+							+ "\nType your answer:");
+
+			String answer = scanner.nextLine();
+
+			if (answer.equalsIgnoreCase("piano")) {
+				System.out.println("\nCorrect! A secret door opens revealing two paths."
+						+ "\nDo you take the left path or the right path?" + "\nType left or right:");
+
+				String path = scanner.nextLine();
+				while (!path.equalsIgnoreCase("left") && !path.equalsIgnoreCase("right")) {
+					System.out.println("Invalid choice, please type left or right");
+					path = scanner.nextLine();
+				}
+
+				if (path.equalsIgnoreCase("left")) {
+					System.out.println("\nYou take the left path and find a chest full of gold coins."
+							+ "\nYour pockets heavy with treasure, you smile knowing your quest was a success."
+							+ "\nAdventure complete, " + name + ". Enjoy your riches!");
+				} else {
+					System.out.println("\nYou take the right path but suddenly fall into a hidden trapdoor."
+							+ "\nYou find yourself locked away, the adventure cut short." + "\nBetter luck next time, "
+							+ name + ".");
+				}
+
+			} else {
+				System.out.println("\nWrong answer! The room begins to fill with water rapidly."
+						+ "\nYou try to escape but the water overwhelms you." + "\nYour journey ends here, " + name
+						+ ". Stay sharp next time.");
+			}
+		}
+
+		// Door 3
+		else {
+			System.out.println("\nYou open the green door and enter a peaceful garden." + "\nYou see a bench and a fountain."
+							+ "\nDo you sit on the bench or approach the fountain?" + "\nType bench or fountain:");
+			
+			String choice3 = scanner.nextLine();
+			while (!choice3.equalsIgnoreCase("bench") && !choice3.equalsIgnoreCase("fountain")) {
+				System.out.println("Invalid choice, please type bench or fountain");
+				choice3 = scanner.nextLine();
+			}
+			
+			// Bench path
+			if (choice3.equalsIgnoreCase("bench")) {
+				System.out.println("\nYou sit on the bench and rest." + "\nSuddenly a fairy appears and grants you a wish."
+								+ "\nDo you wish for riches or wisdom?" + "\nType riches or wisdom:");
+				
+				// Input validation
+				String wish = scanner.nextLine();
+				while (!wish.equalsIgnoreCase("riches") && !wish.equalsIgnoreCase("wisdom")) {
+					System.out.println("Invalid choice, please type riches or wisdom");
+					wish = scanner.nextLine();
+				}
+				
+				// Riches ending
+				if (wish.equalsIgnoreCase("riches")) {
+					System.out.println("\nThe fairy grants you endless gold."
+							+ "\nYou leave the garden as one of the wealthiest adventurers alive."
+							+ "\nA life of comfort and luxury awaits you, " + name + ".");
+				
+					// Wisdom ending
+				} else {
+					System.out.println("\nThe fairy grants you great wisdom."
+							+ "\nYou unlock the garden's secrets and complete your adventure." + "\nCongratulations, "
+							+ name + "!");
+				}
+				// Fountain ending
+			} else {
+				System.out.println("\nYou drink from the fountain and feel refreshed."
+						+ "\nRejuvenated, you complete your adventure with renewed energy." + "\nCongratulations, "
+						+ name + "!");
+			}
+		}
+
+		scanner.close();
+	}
+}
+
+</pre>
+
+    <div class="back">
+      <p>
+        <a href="/">&larr; Back to Portfolio Home</a> • 
+        <a href="https://github.com/jrwalkup/jrwalkup.github.io/tree/main/code/adventureGame" target="_blank">View folder on GitHub</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>
