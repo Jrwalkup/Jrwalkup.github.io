@@ -44,11 +44,12 @@ h1 {
     text-align: center;
 }
 
-.project img{
-width: 1250px;
-height: 450px;
-margin: 10px;
-border: 2px solid rgb(126, 14, 201); /* choose a color */
-display: block;
-margin: auto;
+.project img {
+  max-width: 90%;        
+  width: auto;          
+  border: 3px solid #5e2a84;   
+  border-radius: 10px;   
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
+  display: block;
+  margin: 15px auto;     
 }
