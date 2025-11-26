@@ -5,12 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Text Adventure Game – Joshua Walkup</title>
   <style>
-    body { font-family: Arial, sans-serif; max-width: 900px; margin: 40px auto; line-height: 1.6; background: #f9f9f9; color: #333; }
+    body { font-family: Arial, sans-serif; margin: 40px auto; background: #f9f9f9; color: #333; }
+    .container { max-width: 1150px; margin: 0 auto; background: white; padding: 35px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
     h1 { text-align: center; color: #2c3e50; }
-    .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-    .readme { background: #eef5ff; padding: 20px; border-left: 5px solid #3498db; margin: 25px 0; border-radius: 8px; }
-    pre { background: #2d2d2d; color: #f8f8f2; padding: 20px; overflow-x: auto; border-radius: 8px; font-size: 14px; }
-    .back { text-align: center; margin: 30px 0; }
+    .readme { background: #eef5ff; padding: 20px; border-left: 5px solid #3498db; border-radius: 8px; margin: 30px 0; }
+    pre { 
+      background: #2d2d2d !important; 
+      color: #f8f8f2 !important; 
+      padding: 20px !important; 
+      border-radius: 8px; 
+      overflow-x: auto; 
+      white-space: pre; 
+      font-size: 15px; 
+      line-height: 1.5;
+    }
+    .back { text-align: center; margin: 40px 0; font-size: 1.1em; }
     a { color: #3498db; text-decoration: none; }
     a:hover { text-decoration: underline; }
   </style>
@@ -21,19 +30,18 @@
     
     <div class="readme">
       <h2>About This Project</h2>
-      <p>A fully interactive choose-your-own-adventure game written in Java for CSCE 145.</p>
+      <p>A fully interactive choose-your-own-adventure game written in Java for CSCE 145/146.</p>
       <ul>
         <li>3 starting doors with completely different storylines</li>
-        <li>Over 8 unique endings</li>
+        <li>Over 8 unique endings (treasure, escape, death, fairy wish, etc.)</li>
         <li>Full input validation on every player choice</li>
-        <li>100% original code, written from scratch</li>
+        <li>100% original code</li>
       </ul>
       <p><strong>Run <code>Game.java</code> and type your name to begin your adventure!</strong></p>
     </div>
 
-    <h2>Game.java Full Source Code</h2>
-    <pre>
-    // Joshua Walkup
+    <h2>Game.java – Full Source Code</h2>
+    <pre>// Joshua Walkup
 
 import java.util.Scanner;
 
@@ -265,14 +273,11 @@ public class Game {
 		scanner.close();
 	}
 }
-
 </pre>
 
     <div class="back">
-      <p>
-        <a href="/">&larr; Back to Portfolio Home</a> • 
-        <a href="https://github.com/jrwalkup/jrwalkup.github.io/tree/main/code/adventureGame" target="_blank">View folder on GitHub</a>
-      </p>
+      <a href="/">&larr; Back to Portfolio Home</a> • 
+      <a href="Game.java">Download Game.java</a>
     </div>
   </div>
 </body>
